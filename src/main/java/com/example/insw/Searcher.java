@@ -6,12 +6,13 @@ import java.util.List;
 public class Searcher {
 
     // checks if the phrase exists in the list
-    public boolean searchExactPhrase(String phrase, List<String> list) {
+   public boolean searchExactPhrase(String phrase, List<String> list) {
+        if (list == null || phrase == null) {
+            return false;
+        }
         for (String item : list) {
-            if (item.equals(phrase)) {
+            if (phrase.equals(item)) {
                 return true;
-            } else {
-                return false;
             }
         }
         return false;

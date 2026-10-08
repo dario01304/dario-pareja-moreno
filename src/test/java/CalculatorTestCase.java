@@ -32,6 +32,12 @@ public class CalculatorTestCase {
     }
 
     @Test
+    void testMultiplyDouble() {
+        double result = calculator.multiply(2.5, 4.0);
+        assertEquals(10.0, result, 0.0001);
+    }
+
+    @Test
     void testMultiplyWithZero() {
         // Multiplicación con cero
         int result = calculator.multiply(0, 5);
