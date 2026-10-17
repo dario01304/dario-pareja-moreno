@@ -89,5 +89,7 @@ public class ArticleTest {
     void testDefaultConstructor() {
         Article a = new Article();
         assertNotNull(a);
+
+
 }
 }

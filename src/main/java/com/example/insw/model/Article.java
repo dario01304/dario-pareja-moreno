@@ -1,11 +1,15 @@
 package com.example.insw.model;
 
 import com.example.insw.Calculator;
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Article {
 
     private String name;
     private int quantity;
+    @JsonAlias("unitPrice")
     private double price;
     private double discount;
     private final Calculator calculator = new Calculator();

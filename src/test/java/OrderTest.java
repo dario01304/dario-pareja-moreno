@@ -84,4 +84,10 @@ public class OrderTest {
         assertEquals(1, order.getArticles().size());
         assertEquals("Cable HDMI", order.getArticles().get(0).getName());
     }
+
+    @Test
+    void testConstructorVacio() {
+        Order o = new Order();
+        assertNotNull(o);
+}
 }
