@@ -1,6 +1,8 @@
 package com.example.insw;
 
+import com.example.insw.controller.OrderController;
 import com.example.insw.model.Order;
+import com.example.insw.view.OrderView;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -23,6 +25,10 @@ public class Main {
             for (Order order : orders) {
                 log.debug("Loaded order: {}", order.getId());
             }
+
+            // Initialize MVC
+            OrderView view = new OrderView();
+            new OrderController(view, orders);
         }
     }
 }

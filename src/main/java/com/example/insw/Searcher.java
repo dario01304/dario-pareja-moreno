@@ -3,6 +3,8 @@ package com.example.insw;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.insw.model.Order;
+
 public class Searcher {
 
     // checks if the phrase exists in the list
@@ -51,5 +53,14 @@ public class Searcher {
             }
         }
         return results;
+    }
+    public Order searchOrderById(List<Order> orders, String id) {
+    if (orders == null || id == null) {
+        return null;
+    }
+    return orders.stream()
+            .filter(order -> order.getId() != null && order.getId().equalsIgnoreCase(id))
+            .findFirst()
+            .orElse(null);
     }
 }
