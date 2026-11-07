@@ -4,6 +4,8 @@ import javax.swing.*;
 import com.example.insw.model.Article;
 import com.example.insw.model.Order;
 import java.awt.*;
+import java.net.URL;
+import java.util.Locale;
 
 public class OrderView extends JFrame {
 
@@ -15,6 +17,11 @@ public class OrderView extends JFrame {
         setTitle("Order Management");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
+
+        URL iconUrl = getClass().getClassLoader().getResource("app.png");
+        if (iconUrl != null) {
+            setIconImage(new ImageIcon(iconUrl).getImage());
+        }
 
         add(new JLabel("Order ID:"));
         add(searchField);
@@ -54,19 +61,19 @@ public class OrderView extends JFrame {
 
                 sb.append(article.getName())
                   .append(" x").append(article.getQuantity())
-                  .append(" @ ").append(article.getPrice()).append("$")
+                  .append(" @ ").append(String.format(Locale.US, "%.2f", article.getPrice())).append("€")
                   .append(" (discount ").append(article.getDiscount()).append("%) = ")
-                  .append(itemDiscounted).append("$\n");
+                  .append(String.format(Locale.US, "%.2f", itemDiscounted)).append("€\n");
 
                 grossTotal += itemGross;
                 discountedTotal += itemDiscounted;
             }
         }
 
-        sb.append("Gross total: ").append(grossTotal).append("$\n");
-        sb.append("Discounted total: ").append(discountedTotal).append("$\n");
-        sb.append("Gross total (USD): ").append(grossTotal * rate).append("$\n");
-        sb.append("Discounted total (USD): ").append(discountedTotal * rate).append("$");
+        sb.append("Gross total (EUR): ").append(String.format(Locale.US, "%.2f", grossTotal)).append("€\n");
+        sb.append("Discounted total (EUR): ").append(String.format(Locale.US, "%.2f", discountedTotal)).append("€\n");
+        sb.append("Gross total (USD): ").append(String.format(Locale.US, "%.2f", grossTotal * rate)).append("$\n");
+        sb.append("Discounted total (USD): ").append(String.format(Locale.US, "%.2f", discountedTotal * rate)).append("$");
 
         resultArea.setText(sb.toString());
     }

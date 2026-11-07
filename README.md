@@ -88,3 +88,10 @@ Si deseas contribuir a este proyecto, por favor sigue estos pasos:
 ## Licencia
 
 Este proyecto está bajo la Licencia MIT - consulta el archivo LICENSE para más detalles.
+
+## Servicio Externo de Tipo de Cambio (EUR/USD)
+
+Para obtener el tipo de cambio en tiempo real al visualizar la información del pedido, la aplicación consume la API REST pública de **Exchange Rate API**:
+- **Endpoint**: `https://open.er-api.com/v6/latest/EUR`
+- **Mecanismo**: Mediante `java.net.http.HttpClient` se realiza una petición GET asíncrona/síncrona con *timeout* de 5 segundos. El objeto JSON recibido se procesa con `Jackson` (`ObjectMapper`) para extraer la propiedad `rates.USD`.
+- **Respaldo (Fallback)**: En caso de falta de conectividad o fallo en la API, se aplica un valor por defecto (1.08) garantizando la estabilidad de la App.

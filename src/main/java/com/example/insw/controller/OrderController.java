@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import com.example.insw.Searcher;
 import com.example.insw.model.Order;
+import com.example.insw.CurrencyService;
 import com.example.insw.view.OrderView;
 
 public class OrderController {
@@ -39,7 +40,8 @@ public class OrderController {
         Order foundOrder = searcher.searchOrderById(orders, id);
 
         if (foundOrder != null) {
-            double rate = 1.162976;
+            // Obtener el tipo de cambio actualizado llamando al servicio externo (API)
+            double rate = CurrencyService.getEurToUsdRate();
             view.displayOrder(foundOrder, rate);
         } else {
             view.displayOrder(null, 1.0);
